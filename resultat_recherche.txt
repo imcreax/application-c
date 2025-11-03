@@ -1,0 +1,7 @@
+Nom;calf
+Adresse;tunis
+Ville;tunisie
+Téléphone;7778
+Email;l@g
+Capacité;200
+Type;Privé

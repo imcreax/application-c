@@ -1,0 +1,6 @@
+Total:3
+Privé:2
+Public:1
+Moyenne capacité:250.00
+% avec parking:66.67
+% ouverts le weekend:66.67
