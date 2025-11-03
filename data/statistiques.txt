@@ -1,0 +1,4 @@
+===== STATISTIQUES =====
+Total des équipements : 3316
+Équipements disponibles : 9
+Équipements en panne : 3307
