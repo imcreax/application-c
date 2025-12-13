@@ -1,0 +1,33 @@
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
+#include <gtk/gtk.h>
+
+#include "interface.h"
+#include "support.h"
+
+int main (int argc, char *argv[])
+{
+  GtkWidget *auth_window;
+
+#ifdef ENABLE_NLS
+  bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain (GETTEXT_PACKAGE);
+#endif
+
+  gtk_set_locale ();
+  gtk_init (&argc, &argv);
+
+  add_pixmap_directory (PACKAGE_DATA_DIR "/" PACKAGE "/pixmaps");
+
+  // Créer et afficher seulement la fenêtre d'authentification
+  auth_window = create_Authentification();
+  gtk_widget_show (auth_window);
+
+  gtk_main ();
+  return 0;
+}
+
+
