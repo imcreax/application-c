@@ -396,8 +396,49 @@ void on_im_enrigistrer_button_clicked(GtkButton *button, gpointer user_data)
 
 void on_im_annuler_ajout_button_clicked(GtkButton *button, gpointer user_data)
 {
-    GtkWidget *current_window = gtk_widget_get_toplevel(GTK_WIDGET(button));
-    gtk_widget_destroy(current_window);
+   // Vider tous les champs
+    GtkWidget *input;
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_id_centre_entry");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_nom_entry");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_adresse_entry");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_telephone_entry");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_email_entry");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_capacit___spinbutton");
+    if (input) gtk_spin_button_set_value(GTK_SPIN_BUTTON(input), 0);
+    
+    // Réinitialiser les checkboxes
+    input = lookup_widget(GTK_WIDGET(button), "im_ajout_checkbutton1");
+    if (input) gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(input), FALSE);
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_ajout_checkbutton2");
+    if (input) gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(input), FALSE);
+    
+    // Réinitialiser les radio buttons (sélectionner "privé" par défaut)
+    input = lookup_widget(GTK_WIDGET(button), "im_ajout_radiobutton1");
+    if (input) gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(input), TRUE);
+    
+    // Réinitialiser le combobox ville (index -1 = rien de sélectionné)
+    input = lookup_widget(GTK_WIDGET(button), "im_ville_combobox");
+    if (input) gtk_combo_box_set_active(GTK_COMBO_BOX(input), -1);
+    
+    // Réinitialiser les variables globales
+    ouvert_weekend = 0;
+    parking_disponible = 0;
+    strcpy(type, "Prive");
+    
+    show_success_dialog(GTK_WIDGET(button), "Formulaire réinitialisé");
+
 }
 
 void on_im_retour_ajout_button_clicked(GtkButton *button, gpointer user_data)
@@ -538,8 +579,48 @@ void on_im_mettreajour_button_clicked(GtkButton *button, gpointer user_data)
 
 void on_im_annuler_modif_button_clicked(GtkButton *button, gpointer user_data)
 {
-    GtkWidget *current_window = gtk_widget_get_toplevel(GTK_WIDGET(button));
-    gtk_widget_destroy(current_window);
+    // Vider tous les champs
+    GtkWidget *input;
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_id_modif");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_nom_modif");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_adresse_modif");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_tel_modif");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_email_modif");
+    if (input) gtk_entry_set_text(GTK_ENTRY(input), "");
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_capacite_modif");
+    if (input) gtk_spin_button_set_value(GTK_SPIN_BUTTON(input), 0);
+    
+    // Réinitialiser les checkboxes
+    input = lookup_widget(GTK_WIDGET(button), "im_modif_checkbutton1");
+    if (input) gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(input), FALSE);
+    
+    input = lookup_widget(GTK_WIDGET(button), "im_modif_checkbutton2");
+    if (input) gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(input), FALSE);
+    
+    // Réinitialiser les radio buttons
+    input = lookup_widget(GTK_WIDGET(button), "im_modif_radiobutton1");
+    if (input) gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(input), TRUE);
+    
+    // Réinitialiser le combobox ville
+    input = lookup_widget(GTK_WIDGET(button), "im_ville_combobox_modif");
+    if (input) gtk_combo_box_set_active(GTK_COMBO_BOX(input), -1);
+    
+    // Réinitialiser les variables globales
+    ouvert_weekend = 0;
+    parking_disponible = 0;
+    strcpy(type, "Prive");
+    
+    show_success_dialog(GTK_WIDGET(button), "Formulaire réinitialisé");
 }
 
 void on_im_retour_modif_button_clicked(GtkButton *button, gpointer user_data)
@@ -723,8 +804,22 @@ void on_im_inscri_button_clicked(GtkButton *button, gpointer user_data)
 
 void on_im_annuler_inscri_button_clicked(GtkButton *button, gpointer user_data)
 {
-    GtkWidget *current_window = gtk_widget_get_toplevel(GTK_WIDGET(button));
-    gtk_widget_destroy(current_window);
+    GtkWidget *input;
+    
+    // Réinitialiser le combobox ville
+    input = lookup_widget(GTK_WIDGET(button), "im_inscri_ville_combobox");
+    if (input) gtk_combo_box_set_active(GTK_COMBO_BOX(input), -1);
+    
+    // Vider le treeview
+    GtkWidget *treeview = lookup_widget(GTK_WIDGET(button), "treeview2");
+    if (treeview) {
+        vider_treeview(treeview);
+    }
+    
+    // Réinitialiser la sélection
+    selected_centre_id = -1;
+    
+    show_success_dialog(GTK_WIDGET(button), "Sélection annulée");
 }
 
 void on_im_retour_inscri_button_clicked(GtkButton *button, gpointer user_data)

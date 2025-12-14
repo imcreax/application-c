@@ -32,26 +32,16 @@ create_imen_bm_Gestion_des_centres (void)
   GtkWidget *imen_bm_Gestion_des_centres;
   GtkWidget *fixed4;
   GtkWidget *im_g_centre_label;
-  GtkWidget *im_ajouter_button;
-  GtkWidget *alignment20;
-  GtkWidget *hbox21;
-  GtkWidget *image22;
-  GtkWidget *label69;
-  GtkWidget *im_retour_gc_button;
-  GtkWidget *alignment17;
-  GtkWidget *hbox17;
-  GtkWidget *image19;
-  GtkWidget *label61;
-  GtkWidget *im_stat_button;
-  GtkWidget *alignment24;
-  GtkWidget *hbox25;
-  GtkWidget *image26;
-  GtkWidget *label73;
   GtkWidget *im_modifier_button;
   GtkWidget *alignment39;
   GtkWidget *hbox46;
   GtkWidget *image42;
   GtkWidget *label159;
+  GtkWidget *im_ajouter_button;
+  GtkWidget *alignment20;
+  GtkWidget *hbox21;
+  GtkWidget *image22;
+  GtkWidget *label69;
   GtkWidget *im_supprimer_button;
   GtkWidget *alignment40;
   GtkWidget *hbox47;
@@ -62,6 +52,16 @@ create_imen_bm_Gestion_des_centres (void)
   GtkWidget *hbox24;
   GtkWidget *image25;
   GtkWidget *label72;
+  GtkWidget *im_stat_button;
+  GtkWidget *alignment24;
+  GtkWidget *hbox25;
+  GtkWidget *image26;
+  GtkWidget *label73;
+  GtkWidget *im_retour_gc_button;
+  GtkWidget *alignment17;
+  GtkWidget *hbox17;
+  GtkWidget *image19;
+  GtkWidget *label61;
 
   imen_bm_Gestion_des_centres = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (imen_bm_Gestion_des_centres), _("Gestion des centres"));
@@ -75,6 +75,27 @@ create_imen_bm_Gestion_des_centres (void)
   gtk_widget_show (im_g_centre_label);
   gtk_fixed_put (GTK_FIXED (fixed4), im_g_centre_label, 176, 40);
   gtk_widget_set_size_request (im_g_centre_label, 344, 104);
+
+  im_modifier_button = gtk_button_new ();
+  gtk_widget_show (im_modifier_button);
+  gtk_fixed_put (GTK_FIXED (fixed4), im_modifier_button, 232, 232);
+  gtk_widget_set_size_request (im_modifier_button, 232, 56);
+
+  alignment39 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment39);
+  gtk_container_add (GTK_CONTAINER (im_modifier_button), alignment39);
+
+  hbox46 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox46);
+  gtk_container_add (GTK_CONTAINER (alignment39), hbox46);
+
+  image42 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image42);
+  gtk_box_pack_start (GTK_BOX (hbox46), image42, FALSE, FALSE, 0);
+
+  label159 = gtk_label_new_with_mnemonic (_(" Modifier un centre"));
+  gtk_widget_show (label159);
+  gtk_box_pack_start (GTK_BOX (hbox46), label159, FALSE, FALSE, 0);
 
   im_ajouter_button = gtk_button_new ();
   gtk_widget_show (im_ajouter_button);
@@ -97,73 +118,10 @@ create_imen_bm_Gestion_des_centres (void)
   gtk_widget_show (label69);
   gtk_box_pack_start (GTK_BOX (hbox21), label69, FALSE, FALSE, 0);
 
-  im_retour_gc_button = gtk_button_new ();
-  gtk_widget_show (im_retour_gc_button);
-  gtk_fixed_put (GTK_FIXED (fixed4), im_retour_gc_button, 280, 600);
-  gtk_widget_set_size_request (im_retour_gc_button, 112, 40);
-
-  alignment17 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment17);
-  gtk_container_add (GTK_CONTAINER (im_retour_gc_button), alignment17);
-
-  hbox17 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox17);
-  gtk_container_add (GTK_CONTAINER (alignment17), hbox17);
-
-  image19 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image19);
-  gtk_box_pack_start (GTK_BOX (hbox17), image19, FALSE, FALSE, 0);
-
-  label61 = gtk_label_new_with_mnemonic (_("Retour "));
-  gtk_widget_show (label61);
-  gtk_box_pack_start (GTK_BOX (hbox17), label61, FALSE, FALSE, 0);
-
-  im_stat_button = gtk_button_new ();
-  gtk_widget_show (im_stat_button);
-  gtk_fixed_put (GTK_FIXED (fixed4), im_stat_button, 232, 304);
-  gtk_widget_set_size_request (im_stat_button, 232, 56);
-
-  alignment24 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment24);
-  gtk_container_add (GTK_CONTAINER (im_stat_button), alignment24);
-
-  hbox25 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox25);
-  gtk_container_add (GTK_CONTAINER (alignment24), hbox25);
-
-  image26 = gtk_image_new_from_stock ("gtk-properties", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image26);
-  gtk_box_pack_start (GTK_BOX (hbox25), image26, FALSE, FALSE, 0);
-
-  label73 = gtk_label_new_with_mnemonic (_(" Statistiques Filtr\303\251es "));
-  gtk_widget_show (label73);
-  gtk_box_pack_start (GTK_BOX (hbox25), label73, FALSE, FALSE, 0);
-
-  im_modifier_button = gtk_button_new ();
-  gtk_widget_show (im_modifier_button);
-  gtk_fixed_put (GTK_FIXED (fixed4), im_modifier_button, 232, 384);
-  gtk_widget_set_size_request (im_modifier_button, 232, 56);
-
-  alignment39 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment39);
-  gtk_container_add (GTK_CONTAINER (im_modifier_button), alignment39);
-
-  hbox46 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox46);
-  gtk_container_add (GTK_CONTAINER (alignment39), hbox46);
-
-  image42 = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image42);
-  gtk_box_pack_start (GTK_BOX (hbox46), image42, FALSE, FALSE, 0);
-
-  label159 = gtk_label_new_with_mnemonic (_(" Modifier un centre"));
-  gtk_widget_show (label159);
-  gtk_box_pack_start (GTK_BOX (hbox46), label159, FALSE, FALSE, 0);
-
   im_supprimer_button = gtk_button_new ();
   gtk_widget_show (im_supprimer_button);
-  gtk_fixed_put (GTK_FIXED (fixed4), im_supprimer_button, 232, 464);
-  gtk_widget_set_size_request (im_supprimer_button, 232, 48);
+  gtk_fixed_put (GTK_FIXED (fixed4), im_supprimer_button, 232, 312);
+  gtk_widget_set_size_request (im_supprimer_button, 232, 56);
 
   alignment40 = gtk_alignment_new (0.5, 0.5, 0, 0);
   gtk_widget_show (alignment40);
@@ -183,7 +141,7 @@ create_imen_bm_Gestion_des_centres (void)
 
   im_rechercher_button = gtk_button_new ();
   gtk_widget_show (im_rechercher_button);
-  gtk_fixed_put (GTK_FIXED (fixed4), im_rechercher_button, 232, 224);
+  gtk_fixed_put (GTK_FIXED (fixed4), im_rechercher_button, 232, 392);
   gtk_widget_set_size_request (im_rechercher_button, 232, 56);
 
   alignment23 = gtk_alignment_new (0.5, 0.5, 0, 0);
@@ -202,17 +160,53 @@ create_imen_bm_Gestion_des_centres (void)
   gtk_widget_show (label72);
   gtk_box_pack_start (GTK_BOX (hbox24), label72, FALSE, FALSE, 0);
 
-  g_signal_connect ((gpointer) im_ajouter_button, "clicked",
-                    G_CALLBACK (on_im_ajouter_button_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) im_retour_gc_button, "clicked",
-                    G_CALLBACK (on_im_retour_gc_button_clicked),
-                    NULL);
-  g_signal_connect ((gpointer) im_stat_button, "clicked",
-                    G_CALLBACK (on_im_stat_button_clicked),
-                    NULL);
+  im_stat_button = gtk_button_new ();
+  gtk_widget_show (im_stat_button);
+  gtk_fixed_put (GTK_FIXED (fixed4), im_stat_button, 232, 472);
+  gtk_widget_set_size_request (im_stat_button, 232, 56);
+
+  alignment24 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment24);
+  gtk_container_add (GTK_CONTAINER (im_stat_button), alignment24);
+
+  hbox25 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox25);
+  gtk_container_add (GTK_CONTAINER (alignment24), hbox25);
+
+  image26 = gtk_image_new_from_stock ("gtk-properties", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image26);
+  gtk_box_pack_start (GTK_BOX (hbox25), image26, FALSE, FALSE, 0);
+
+  label73 = gtk_label_new_with_mnemonic (_(" Statistiques Filtr\303\251es "));
+  gtk_widget_show (label73);
+  gtk_box_pack_start (GTK_BOX (hbox25), label73, FALSE, FALSE, 0);
+
+  im_retour_gc_button = gtk_button_new ();
+  gtk_widget_show (im_retour_gc_button);
+  gtk_fixed_put (GTK_FIXED (fixed4), im_retour_gc_button, 288, 568);
+  gtk_widget_set_size_request (im_retour_gc_button, 112, 40);
+
+  alignment17 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment17);
+  gtk_container_add (GTK_CONTAINER (im_retour_gc_button), alignment17);
+
+  hbox17 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox17);
+  gtk_container_add (GTK_CONTAINER (alignment17), hbox17);
+
+  image19 = gtk_image_new_from_stock ("gtk-go-back", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image19);
+  gtk_box_pack_start (GTK_BOX (hbox17), image19, FALSE, FALSE, 0);
+
+  label61 = gtk_label_new_with_mnemonic (_("Retour "));
+  gtk_widget_show (label61);
+  gtk_box_pack_start (GTK_BOX (hbox17), label61, FALSE, FALSE, 0);
+
   g_signal_connect ((gpointer) im_modifier_button, "clicked",
                     G_CALLBACK (on_im_modifier_button_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) im_ajouter_button, "clicked",
+                    G_CALLBACK (on_im_ajouter_button_clicked),
                     NULL);
   g_signal_connect ((gpointer) im_supprimer_button, "clicked",
                     G_CALLBACK (on_im_supprimer_button_clicked),
@@ -220,31 +214,27 @@ create_imen_bm_Gestion_des_centres (void)
   g_signal_connect ((gpointer) im_rechercher_button, "clicked",
                     G_CALLBACK (on_im_rechercher_button_clicked),
                     NULL);
+  g_signal_connect ((gpointer) im_stat_button, "clicked",
+                    G_CALLBACK (on_im_stat_button_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) im_retour_gc_button, "clicked",
+                    G_CALLBACK (on_im_retour_gc_button_clicked),
+                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (imen_bm_Gestion_des_centres, imen_bm_Gestion_des_centres, "imen_bm_Gestion_des_centres");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, fixed4, "fixed4");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, im_g_centre_label, "im_g_centre_label");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, im_ajouter_button, "im_ajouter_button");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, alignment20, "alignment20");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, hbox21, "hbox21");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, image22, "image22");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, label69, "label69");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, im_retour_gc_button, "im_retour_gc_button");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, alignment17, "alignment17");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, hbox17, "hbox17");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, image19, "image19");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, label61, "label61");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, im_stat_button, "im_stat_button");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, alignment24, "alignment24");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, hbox25, "hbox25");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, image26, "image26");
-  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, label73, "label73");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, im_modifier_button, "im_modifier_button");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, alignment39, "alignment39");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, hbox46, "hbox46");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, image42, "image42");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, label159, "label159");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, im_ajouter_button, "im_ajouter_button");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, alignment20, "alignment20");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, hbox21, "hbox21");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, image22, "image22");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, label69, "label69");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, im_supprimer_button, "im_supprimer_button");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, alignment40, "alignment40");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, hbox47, "hbox47");
@@ -255,6 +245,16 @@ create_imen_bm_Gestion_des_centres (void)
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, hbox24, "hbox24");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, image25, "image25");
   GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, label72, "label72");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, im_stat_button, "im_stat_button");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, alignment24, "alignment24");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, hbox25, "hbox25");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, image26, "image26");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, label73, "label73");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, im_retour_gc_button, "im_retour_gc_button");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, alignment17, "alignment17");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, hbox17, "hbox17");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, image19, "image19");
+  GLADE_HOOKUP_OBJECT (imen_bm_Gestion_des_centres, label61, "label61");
 
   return imen_bm_Gestion_des_centres;
 }
