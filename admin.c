@@ -1,7 +1,4 @@
 #include "admin.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 void ajouter_cours(Cours c) {
     FILE *f = fopen("cours.txt", "a");
@@ -20,11 +17,7 @@ int modifier_cours(Cours c) {
     FILE *f = fopen("cours.txt", "r");
     FILE *ft = fopen("temp.txt", "w");
    
-    if (!f || !ft) {
-        if (f) fclose(f);
-        if (ft) fclose(ft);
-        return 0;
-    }
+    if (!f || !ft) return 0;
    
     while (fscanf(f, "%[^|]|%[^|]|%[^|]|%[^|]|%[^|]|%d|%[^|]|%[^|]|%d|%f|%d\n",
                   temp.id, temp.nom, temp.entraineur, temp.date,
@@ -57,11 +50,7 @@ int supprimer_cours(char id[]) {
     FILE *f = fopen("cours.txt", "r");
     FILE *ft = fopen("temp.txt", "w");
    
-    if (!f || !ft) {
-        if (f) fclose(f);
-        if (ft) fclose(ft);
-        return 0;
-    }
+    if (!f || !ft) return 0;
    
     while (fscanf(f, "%[^|]|%[^|]|%[^|]|%[^|]|%[^|]|%d|%[^|]|%[^|]|%d|%f|%d\n",
                   temp.id, temp.nom, temp.entraineur, temp.date,
@@ -69,7 +58,6 @@ int supprimer_cours(char id[]) {
                   &temp.capacite_max, &temp.tarif, &temp.inscrits) != EOF) {
         if (strcmp(temp.id, id) == 0) {
             trouve = 1;
-            // Ne pas écrire cette ligne dans le fichier temporaire
         } else {
             fprintf(ft, "%s|%s|%s|%s|%s|%d|%s|%s|%d|%.2f|%d\n",
                     temp.id, temp.nom, temp.entraineur, temp.date,
@@ -119,7 +107,7 @@ int verifier_disponibilite(char id[]) {
 }
 
 int inscription_cours(char id_cours[], char id_membre[]) {
-    // Vérifier si le membre existe déjà
+    // Vérifier si le membre existe déjà dans membres.txt
     int membre_existe = 0;
     FILE *fm = fopen("membres.txt", "r");
     if (fm) {
@@ -147,10 +135,10 @@ int inscription_cours(char id_cours[], char id_membre[]) {
    
     if (c->inscrits >= c->capacite_max) {
         free(c);
-        return 0;
+        return 0; // Cours complet
     }
    
-    // Vérifier si déjà inscrit
+    // Vérifier si le membre est déjà inscrit à ce cours
     FILE *fi = fopen("inscriptions.txt", "r");
     if (fi) {
         char id_c[20], id_m[20];
@@ -158,7 +146,7 @@ int inscription_cours(char id_cours[], char id_membre[]) {
             if (strcmp(id_c, id_cours) == 0 && strcmp(id_m, id_membre) == 0) {
                 fclose(fi);
                 free(c);
-                return 0;
+                return 0; // Déjà inscrit
             }
         }
         fclose(fi);
@@ -166,6 +154,8 @@ int inscription_cours(char id_cours[], char id_membre[]) {
    
     // Incrémenter le nombre d'inscrits
     c->inscrits++;
+   
+    // Sauvegarder les modifications
     modifier_cours(*c);
    
     // Ajouter l'inscription
@@ -242,9 +232,7 @@ int get_total_cours() {
    
     char line[256];
     while (fgets(line, sizeof(line), f)) {
-        if (strlen(line) > 1) { // Ignorer les lignes vides
-            count++;
-        }
+        count++;
     }
    
     fclose(f);
@@ -307,24 +295,15 @@ int get_total_inscrits() {
 }
 
 float get_taux_occupation() {
-    int total_inscrits = 0;
-    int capacite_totale = 0;
-    
-    FILE *f = fopen("cours.txt", "r");
-    if (!f) return 0.0;
+    int total_cours = get_total_cours();
+    int total_inscrits = get_total_inscrits();
    
-    Cours c;
-    while (fscanf(f, "%[^|]|%[^|]|%[^|]|%[^|]|%[^|]|%d|%[^|]|%[^|]|%d|%f|%d\n",
-                  c.id, c.nom, c.entraineur, c.date,
-                  c.heure, &c.duree, c.centre, c.niveau,
-                  &c.capacite_max, &c.tarif, &c.inscrits) != EOF) {
-        total_inscrits += c.inscrits;
-        capacite_totale += c.capacite_max;
-    }
+    if (total_cours == 0) return 0.0;
    
-    fclose(f);
-    
+    // Calculer la capacité totale estimée (moyenne de 30 par cours)
+    int capacite_totale = total_cours * 30;
+   
     if (capacite_totale == 0) return 0.0;
-    
+   
     return (float)total_inscrits / capacite_totale * 100.0;
 }

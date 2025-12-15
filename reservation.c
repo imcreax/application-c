@@ -1,47 +1,66 @@
-#include <stdio.h>
-#include <string.h>
 #include "reservation.h"
-#include "equipement.h"
+#include <string.h>
+#include <stdlib.h>
 
-#define FICHIER_RES "data/reservations.txt"
-#define FICHIER_EQUIPE "data/affichage_equipements.txt"
+void afficher_disponibilite_date(GtkTreeView *treeview)
+{
+    GtkListStore *store = gtk_list_store_new(3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT);
+    GtkTreeIter iter;
+    agent ag;
+    FILE *f = fopen("equipment.txt", "r");
+    if (!f) return;
 
-int verifier_disponibilite(int id, char date[], char creneau[], int quantite) {
-    FILE *f = fopen(FICHIER_EQUIPE, "r");
-    if (f == NULL) return 0;
-
-    Equipement e;
-    while (fscanf(f, "%d %49s %d %19s", &e.id, e.nom, &e.quantite, e.etat) == 4) {
-        if (e.id == id && strcmp(e.etat, "disponible") == 0 && e.quantite >= quantite) {
-            fclose(f);
-            return 1;
+    while (fscanf(f, "%s %s %d %s %s\n", ag.idag, ag.nom_ag, &ag.Quantite.jj, ag.Disponible, ag.etat) != EOF)
+    {
+        if (strcmp(ag.Disponible, "oui") == 0 && ag.Quantite.jj > 0)
+        {
+            gtk_list_store_append(store, &iter);
+            gtk_list_store_set(store, &iter, 0, ag.idag, 1, ag.nom_ag, 2, ag.Quantite.jj, -1);
         }
     }
     fclose(f);
-    return 0;
+
+    // Colonnes (une seule fois)
+    if (gtk_tree_view_get_column(GTK_TREE_VIEW(treeview), 0) == NULL)
+    {
+        GtkCellRenderer *renderer = gtk_cell_renderer_text_new();
+        GtkTreeViewColumn *col;
+
+        col = gtk_tree_view_column_new_with_attributes("Équipement", renderer, "text", 0, NULL);
+        gtk_tree_view_append_column(treeview, col);
+
+        col = gtk_tree_view_column_new_with_attributes("Disponibilité", renderer, "text", 1, NULL);
+        gtk_tree_view_append_column(treeview, col);
+
+        col = gtk_tree_view_column_new_with_attributes("Quantité", renderer, "text", 2, NULL);
+        gtk_tree_view_append_column(treeview, col);
+    }
+
+    gtk_tree_view_set_model(treeview, GTK_TREE_MODEL(store));
+    g_object_unref(store);
 }
-void ajouter_reservation(Reservation r) {
-    FILE *f = fopen(FICHIER_RES, "a");
-    if (f != NULL) {
-        fprintf(f, "%d %s %s %s %d\n", r.id, r.nom, r.date, r.creneau, r.quantite);
+
+int reserver_equipement(Reservation r)
+{
+    agent *ag = chercherequipment(r.id);
+    if (!ag || strcmp(ag->Disponible, "non") == 0 || ag->Quantite.jj < r.quantite)
+    {
+        if (ag) free(ag);
+        return 0;
+    }
+
+    ag->Quantite.jj -= r.quantite;
+    if (ag->Quantite.jj <= 0) strcpy(ag->Disponible, "non");
+
+    modiferequipment(*ag);
+    free(ag);
+
+    FILE *f = fopen("reservations.txt", "a");
+    if (f)
+    {
+        fprintf(f, "%s %s %02d/%02d/%d %s %d\n", r.id, r.nom, r.jour, r.mois, r.annee, r.periode, r.quantite);
         fclose(f);
+        return 1;
     }
-}
-
-void supprimer_reservation(int id, char date[], char creneau[]) {
-    FILE *f = fopen(FICHIER_RES, "r");
-    FILE *tmp = fopen("data/tmp_res.txt", "w");
-    Reservation r;
-
-    if (f == NULL || tmp == NULL) return;
-
-    while (fscanf(f, "%d %s %s %s %d", &r.id, r.nom, r.date, r.creneau, &r.quantite) != EOF) {
-        if (!(r.id == id && strcmp(r.date, date) == 0 && strcmp(r.creneau, creneau) == 0)) {
-            fprintf(tmp, "%d %s %s %s %d\n", r.id, r.nom, r.date, r.creneau, r.quantite);
-        }
-    }
-    fclose(f);
-    fclose(tmp);
-    remove(FICHIER_RES);
-    rename("data/tmp_res.txt", FICHIER_RES);
+    return 0;
 }

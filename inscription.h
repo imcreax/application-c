@@ -4,10 +4,10 @@
 typedef struct {
     int idCentre;
     char nomEntraineur[50];
-    char email[50];
+    char emailEntraineur[50];
 } Inscription;
 
-void inscrireEntraineur(Inscription i);
-void afficherCentresParVille(char* ville);
+int ajouter_inscription(Inscription i);
+void afficher_centres_par_ville(const char *ville, GtkWidget *treeview);
 
 #endif

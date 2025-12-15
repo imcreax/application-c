@@ -1,10 +1,5 @@
-C001|Yoga débutant|ali selmi|15/12/2024|09:00|2|Tunis|débutant|20|50.00|0
+C001|Yoga débutant|ali selmi|15/12/2024|09:00|2|Tunis|débutant|20|50.00|1
 C002|Fitness avancé|amin trabelsi|16/12/2024|14:00|2|Ariana|avancé|15|75.00|0
 C003|Pilates intermédiaire|nour manai|17/12/2024|10:30|3|Sfax|intermédiaire|25|60.00|0
 C004|Zumba tous niveaux|ali selmi|18/12/2024|18:00|2|Tunis|débutant,intermédiaire,avancé|30|45.00|0
 C005|Musculation|amin trabelsi|19/12/2024|07:00|3|Ben Arous|intermédiaire,avancé|20|80.00|0
-C006|Natation débutant|nour manai|20/12/2024|08:00|2|Sousse|débutant|12|65.00|0
-C007|Boxe|ali selmi|21/12/2024|17:00|3|Tunis|intermédiaire,avancé|18|90.00|0
-C008|Danse contemporaine|amin trabelsi|22/12/2024|15:00|2|Nabeul|débutant,intermédiaire|22|55.00|0
-
-1919|cardio junior|ali selmi |3/3/26|9h|2|sousse|débutant|30|100.00|0
