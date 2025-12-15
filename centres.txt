@@ -1,8 +1,1 @@
-22;gymway;tunis;tunisie;7777;m@g.tn;350;1;1;1
-252;gg;ariana;tunisie;44;5sq;200;1;3;0
-222;gymway;aouina;tuinis;7777;m@tn;300;1;1;0
-444;calf;tunis;tunisie;7778;l@g;200;0;1;0
-190;gymway;ariana;Ariana;78963251;gym@gmail.com;300;0;1;1
-121;joy;ariana;Ariana;78966333;joy@gmail.com;250;1;1;1
-323;free;sousse;sousse;72149638;free@gmail.com;300;0;0;1
-745;elite;ariana;Ariana;77789622;elite@gmail.com;300;0;0;1
+1;deded;deded;Ariana;45454541;deed@gmail.com;4;0;0;1

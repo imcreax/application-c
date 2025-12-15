@@ -62,5 +62,11 @@ void afficher_statistiques_filtre(GtkWidget *window) {
         gtk_label_set_text(GTK_LABEL(lookup_widget(window, "label666666")), "0");
     }
 }
-	
+void afficher_statistiques(GtkWidget *window) {
+    // Afficher les statistiques dans les labels appropriés
+    GtkWidget *label = lookup_widget(window, "label_stats");
+    if (label) {
+        gtk_label_set_text(GTK_LABEL(label), "Statistiques mises à jour");
+    }
+}	
 

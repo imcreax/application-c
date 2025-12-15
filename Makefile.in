@@ -86,7 +86,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = project15_2$(EXEEXT)
+bin_PROGRAMS = group_1$(EXEEXT)
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
@@ -99,12 +99,15 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_project15_2_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
+am_group_1_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) centre.$(OBJEXT) \
-	inscription.$(OBJEXT)
-project15_2_OBJECTS = $(am_project15_2_OBJECTS)
+	coach.$(OBJEXT) entraineur.$(OBJEXT) equipment.$(OBJEXT) \
+	evenement.$(OBJEXT) inscription.$(OBJEXT) membre.$(OBJEXT) \
+	reservation.$(OBJEXT) stats.$(OBJEXT) admin.$(OBJEXT) \
+	utilisateur.$(OBJEXT)
+group_1_OBJECTS = $(am_group_1_OBJECTS)
 am__DEPENDENCIES_1 =
-project15_2_DEPENDENCIES = $(am__DEPENDENCIES_1)
+group_1_DEPENDENCIES = $(am__DEPENDENCIES_1)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -133,8 +136,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(project15_2_SOURCES)
-DIST_SOURCES = $(project15_2_SOURCES)
+SOURCES = $(group_1_SOURCES)
+DIST_SOURCES = $(group_1_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -278,15 +281,24 @@ INCLUDES = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	@PACKAGE_CFLAGS@
 
-project15_2_SOURCES = \
+group_1_SOURCES = \
 	main.c \
 	support.c support.h \
 	interface.c interface.h \
 	callbacks.c callbacks.h \
 	centre.c centre.h \
-	inscription.c inscription.h 
+	coach.c coach.h \
+	entraineur.c entraineur.h \
+	equipment.c equipment.h \
+	evenement.c evenement.h \
+	inscription.c inscription.h \
+	membre.c membre.h \
+	reservation.c reservation.h \
+	stats.c stats.h \
+	admin.c admin.h \
+        utilisateur.c utilisateur.h
 
-project15_2_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
+group_1_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 all: all-am
 
 .SUFFIXES:
@@ -363,9 +375,9 @@ uninstall-binPROGRAMS:
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 
-project15_2$(EXEEXT): $(project15_2_OBJECTS) $(project15_2_DEPENDENCIES) $(EXTRA_project15_2_DEPENDENCIES) 
-	@rm -f project15_2$(EXEEXT)
-	$(AM_V_CCLD)$(LINK) $(project15_2_OBJECTS) $(project15_2_LDADD) $(LIBS)
+group_1$(EXEEXT): $(group_1_OBJECTS) $(group_1_DEPENDENCIES) $(EXTRA_group_1_DEPENDENCIES) 
+	@rm -f group_1$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(group_1_OBJECTS) $(group_1_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -373,12 +385,21 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/admin.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/callbacks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/centre.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/coach.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/entraineur.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/equipment.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/evenement.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/inscription.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/membre.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/reservation.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/stats.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/support.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/utilisateur.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

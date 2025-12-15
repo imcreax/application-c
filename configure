@@ -2702,7 +2702,7 @@ fi
 
 # Define the identity of the package.
 
- PACKAGE=vf
+ PACKAGE=group_1
  VERSION=0.1
 
 
@@ -5968,7 +5968,7 @@ fi
 
 
 
-GETTEXT_PACKAGE=vf
+GETTEXT_PACKAGE=group_1
 
 
 cat >>confdefs.h <<_ACEOF
